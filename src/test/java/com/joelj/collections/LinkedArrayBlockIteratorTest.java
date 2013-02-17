@@ -70,13 +70,24 @@ public class LinkedArrayBlockIteratorTest {
 		}
 		LinkedArrayBlockIterator<Integer> iterator = linkedArrayList.iterator();
 		for(int i = 0; i < 5; i++) {
+			assertEquals(iterator.previousIndex(), i-1);
 			iterator.next();
+			assertTrue(iterator.hasPrevious());
+			assertEquals(iterator.nextIndex(), i+1);
 		}
 
 		for(int i = 4; i >= 0; i--) {
 			int actual = iterator.previous();
 			System.out.println(actual);
 			assertEquals(actual, i * 10);
+		}
+
+		assertFalse(iterator.hasPrevious());
+
+		try {
+			iterator.previous();
+			fail("Iterators previous() implementation, by definition, need to throw NoSuckElementException if called when at the beginning.");
+		} catch(NoSuchElementException e) {
 		}
 	}
 

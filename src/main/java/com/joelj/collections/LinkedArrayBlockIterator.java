@@ -87,7 +87,7 @@ public class LinkedArrayBlockIterator<T> implements ListIterator<T> {
 
 	@Override
 	public int nextIndex() {
-		return globalIndex + 1;
+		return globalIndex;
 	}
 
 	@Override

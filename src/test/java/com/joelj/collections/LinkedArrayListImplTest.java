@@ -70,10 +70,5 @@ public class LinkedArrayListImplTest {
 			list.subList(0, 1);
 			fail("subList(int, int) appears to have an implementation now. Remove this when there are tests that test it.");
 		} catch (UnsupportedOperationException ignore) {}
-
-		try {
-			list.set(0, new Object());
-			fail("set(int, E) appears to have an implementation now. Remove this when there are tests that test it.");
-		} catch (UnsupportedOperationException ignore) {}
 	}
 }

@@ -88,6 +88,19 @@ public class LinkedArrayList<T> implements Iterable<T> {
 		size++;
 	}
 
+	public T replace(int index, T toAdd) {
+		if(toAdd == null) {
+			throw new NullPointerException("cannot add null to LinkedArrayList");
+		}
+
+		Pair<Block<T>, Integer> blockIndex = getBlockIndex(index);
+		Block<T> block = blockIndex.getFirst();
+		Integer blockIndexValue = blockIndex.getSecond();
+		T result = block.get(blockIndexValue);
+		block.array[blockIndexValue] = toAdd;
+		return result;
+	}
+
 	public T get(int index) {
 		Pair<Block<T>, Integer> blockIndex = getBlockIndex(index);
 		return blockIndex.getFirst().get(blockIndex.getSecond());

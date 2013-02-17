@@ -216,4 +216,25 @@ public class LinkedArrayListTest {
 		assertEquals(linkedArrayList.getBlockCount(), 1);
 		assertEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After clearing, head and tail should be the same.");
 	}
+
+	@Test
+	public void testReplace() {
+		LinkedArrayList<Object> linkedArrayList = LinkedArrayList.createRaw();
+		for(int i = 0; i < 30; i++) {
+			linkedArrayList.add(i);
+		}
+
+		assertEquals(linkedArrayList.getSize(), 30);
+		Object replaced = linkedArrayList.replace(15, "Hello");
+		assertEquals(linkedArrayList.getSize(), 30);
+		assertEquals(replaced, 15);
+		assertEquals(linkedArrayList.get(15), "Hello");
+		int index = 0;
+		for (Object o : linkedArrayList) {
+			if(index != 15) {
+				assertEquals(o, index);
+			}
+			index++;
+		}
+	}
 }

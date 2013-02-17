@@ -147,7 +147,7 @@ class LinkedArrayListImpl<E> implements List<E> {
 
 	@Override
 	public E set(int index, E element) {
-		throw new UnsupportedOperationException();
+		return delegate.replace(index, element);
 	}
 
 	@Override

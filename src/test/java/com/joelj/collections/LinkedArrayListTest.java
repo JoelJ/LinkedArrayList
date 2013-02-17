@@ -15,6 +15,7 @@ public class LinkedArrayListTest {
 	public void testInitialize() {
 		LinkedArrayList<String> linkedArrayList = LinkedArrayList.create();
 		assertEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After creating a new instance and before allocating a block, head and tail should be the same.");
+		assertEquals(linkedArrayList.getBlockCount(), 1);
 	}
 
 	@Test
@@ -22,6 +23,7 @@ public class LinkedArrayListTest {
 		LinkedArrayList<String> linkedArrayList = LinkedArrayList.create();
 		linkedArrayList.allocateBlock();
 		assertNotEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After allocating a new block, head and tail should be different.");
+		assertEquals(linkedArrayList.getBlockCount(), 2);
 	}
 
 	@Test
@@ -196,5 +198,22 @@ public class LinkedArrayListTest {
 		for(int i = 10; i < 20; i++) {
 			assertEquals(linkedArrayList.get(i).intValue(), i+10);
 		}
+	}
+
+	@Test
+	public void testClear() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		for(int i = 0; i < 30; i++) {
+			linkedArrayList.add(i);
+		}
+		assertEquals(linkedArrayList.getSize(), 30);
+		assertEquals(linkedArrayList.getBlockCount(), 3);
+		assertNotEquals(linkedArrayList.getHead(), linkedArrayList.getTail());
+
+		linkedArrayList.clear();
+
+		assertEquals(linkedArrayList.getSize(), 0);
+		assertEquals(linkedArrayList.getBlockCount(), 1);
+		assertEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After clearing, head and tail should be the same.");
 	}
 }

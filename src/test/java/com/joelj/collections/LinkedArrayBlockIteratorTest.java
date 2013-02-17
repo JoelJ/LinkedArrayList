@@ -4,6 +4,9 @@ import static org.testng.Assert.*;
 
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * User: Joel Johnson
  * Date: 2/16/13
@@ -22,6 +25,40 @@ public class LinkedArrayBlockIteratorTest {
 		for (Integer integer : linkedArrayList) {
 			assertEquals(integer.intValue(), currentIndex);
 			currentIndex++;
+		}
+	}
+
+	@Test
+	public void testForEachWithEmptyBlock() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		int numberToAddAndCheck = 50;
+		for (int i = 0; i < numberToAddAndCheck; i++) {
+			linkedArrayList.add(i);
+		}
+
+		//Empty out a couple blocks
+		for (int i = 0; i < 30; i++) {
+			linkedArrayList.remove(0);
+		}
+
+		int currentIndex = 0;
+		for (Integer integer : linkedArrayList) {
+			assertEquals(integer.intValue(), currentIndex+30);
+			currentIndex++;
+		}
+	}
+
+	@Test
+	public void testNext() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		linkedArrayList.add(1);
+		Iterator<Integer> iterator = linkedArrayList.iterator();
+		assertEquals(iterator.next().intValue(), 1);
+
+		try {
+			iterator.next();
+			fail("Iterators next() implementation, by definition, need to throw NoSuckElementException if called more times than there are elements.");
+		} catch(NoSuchElementException e) {
 		}
 	}
 

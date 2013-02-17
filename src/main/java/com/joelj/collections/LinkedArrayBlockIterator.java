@@ -1,6 +1,7 @@
 package com.joelj.collections;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * User: Joel Johnson
@@ -25,7 +26,7 @@ class LinkedArrayBlockIterator<T> implements Iterator<T> {
 	@Override
 	public T next() {
 		if(!hasNext()) {
-			throw new IndexOutOfBoundsException("There are no more elements left to iterate.");
+			throw new NoSuchElementException("There are no more elements left to iterate.");
 		}
 
 		if(index >= current.nextIndex) {

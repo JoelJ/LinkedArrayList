@@ -57,11 +57,6 @@ public class LinkedArrayListImplTest {
 		} catch (UnsupportedOperationException ignore) {}
 
 		try {
-			list.listIterator();
-			fail("listIterator() appears to have an implementation now. Remove this when there are tests that test it.");
-		} catch (UnsupportedOperationException ignore) {}
-
-		try {
 			list.listIterator(0);
 			fail("listIterator(int) appears to have an implementation now. Remove this when there are tests that test it.");
 		} catch (UnsupportedOperationException ignore) {}

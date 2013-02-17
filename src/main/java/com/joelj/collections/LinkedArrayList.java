@@ -15,11 +15,11 @@ public class LinkedArrayList<T> implements Iterable<T> {
 	private Block<T> head;
 	private Block<T> tail;
 
-	public static <T> LinkedArrayList<T> createWithBlockSize(int size) {
+	public static <T> LinkedArrayList<T> createRawWithBlockSize(int size) {
 		return new LinkedArrayList<T>(size);
 	}
 
-	public static <T> LinkedArrayList<T> create() {
+	public static <T> LinkedArrayList<T> createRaw() {
 		return new LinkedArrayList<T>(16);
 	}
 

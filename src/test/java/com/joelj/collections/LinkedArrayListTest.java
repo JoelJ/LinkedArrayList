@@ -13,14 +13,14 @@ import org.testng.annotations.Test;
 public class LinkedArrayListTest {
 	@Test
 	public void testInitialize() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.create();
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRaw();
 		assertEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After creating a new instance and before allocating a block, head and tail should be the same.");
 		assertEquals(linkedArrayList.getBlockCount(), 1);
 	}
 
 	@Test
 	public void testAllocateFirstNewBlock() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.create();
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRaw();
 		linkedArrayList.allocateBlock();
 		assertNotEquals(linkedArrayList.getHead(), linkedArrayList.getTail(), "After allocating a new block, head and tail should be different.");
 		assertEquals(linkedArrayList.getBlockCount(), 2);
@@ -28,7 +28,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testAdd() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createWithBlockSize(4);
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRawWithBlockSize(4);
 		assertEquals(linkedArrayList.getSize(), 0);
 		linkedArrayList.add("1");
 		assertEquals(linkedArrayList.getSize(), 1);
@@ -44,7 +44,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testAddNull() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createWithBlockSize(4);
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRawWithBlockSize(4);
 		assertEquals(linkedArrayList.getSize(), 0);
 		try {
 			linkedArrayList.add(null);
@@ -56,7 +56,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testAutoExpand() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createWithBlockSize(4);
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRawWithBlockSize(4);
 		linkedArrayList.add("1");
 		linkedArrayList.add("2");
 		linkedArrayList.add("3");
@@ -68,7 +68,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testGet() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(2);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(2);
 		int numberToAddAndCheck = 20;
 		for (int i = 0; i < numberToAddAndCheck; i++) {
 			linkedArrayList.add(i);
@@ -81,7 +81,7 @@ public class LinkedArrayListTest {
 	@Test
 	public void testGetOutOfBounds() {
 		int numberToAdd = 5;
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(2);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(2);
 		for (int i = 0; i < numberToAdd; i++) {
 			linkedArrayList.add(i);
 		}
@@ -117,7 +117,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testRemoveOneBlock() {
-		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		LinkedArrayList<String> linkedArrayList = LinkedArrayList.createRawWithBlockSize(10);
 		linkedArrayList.add("1");
 		linkedArrayList.add("2");
 		linkedArrayList.add("3");
@@ -137,7 +137,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testRemoveMiddleBlock() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(10);
 		for(int i = 0; i < 30; i++) {
 			linkedArrayList.add(i);
 		}
@@ -160,7 +160,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testRemoveEntireFirstBlock() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(10);
 		for(int i = 0; i < 30; i++) {
 			linkedArrayList.add(i);
 		}
@@ -179,7 +179,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testRemoveEntireSecondBlock() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(10);
 		for(int i = 0; i < 30; i++) {
 			linkedArrayList.add(i);
 		}
@@ -202,7 +202,7 @@ public class LinkedArrayListTest {
 
 	@Test
 	public void testClear() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(10);
 		for(int i = 0; i < 30; i++) {
 			linkedArrayList.add(i);
 		}

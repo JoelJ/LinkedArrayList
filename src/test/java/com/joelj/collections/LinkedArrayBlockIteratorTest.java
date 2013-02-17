@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class LinkedArrayBlockIteratorTest {
 	@Test
 	public void testForEach() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
 		int numberToAddAndCheck = 20;
 		for (int i = 0; i < numberToAddAndCheck; i++) {
 			linkedArrayList.add(i);
@@ -30,7 +30,7 @@ public class LinkedArrayBlockIteratorTest {
 
 	@Test
 	public void testForEachWithEmptyBlock() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
 		int numberToAddAndCheck = 50;
 		for (int i = 0; i < numberToAddAndCheck; i++) {
 			linkedArrayList.add(i);
@@ -50,7 +50,7 @@ public class LinkedArrayBlockIteratorTest {
 
 	@Test
 	public void testNext() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
 		linkedArrayList.add(1);
 		Iterator<Integer> iterator = linkedArrayList.iterator();
 		assertEquals(iterator.next().intValue(), 1);
@@ -64,7 +64,7 @@ public class LinkedArrayBlockIteratorTest {
 
 	@Test
 	public void testRemove() {
-		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(5);
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
 		try {
 			linkedArrayList.iterator().remove();
 		} catch (UnsupportedOperationException e) {

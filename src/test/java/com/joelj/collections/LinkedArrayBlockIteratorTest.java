@@ -80,6 +80,22 @@ public class LinkedArrayBlockIteratorTest {
 		}
 	}
 
+	@Test
+	public void testSet() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRaw();
+		for(int i = 0; i < 10; i++) {
+			linkedArrayList.add(i*10);
+		}
+		LinkedArrayBlockIterator<Integer> iterator = linkedArrayList.iterator();
+		for(int i = 0; i < 5; i++) {
+			iterator.next();
+		}
+
+		iterator.set(5000);
+
+		assertEquals(linkedArrayList.get(5).intValue(), 5000);
+	}
+
 
 	@Test
 	public void testRemove() {

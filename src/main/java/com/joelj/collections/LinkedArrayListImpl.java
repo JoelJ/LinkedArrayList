@@ -11,7 +11,7 @@ import java.util.ListIterator;
  * Date: 2/16/13
  * Time: 6:20 PM
  */
-public class LinkedArrayListImpl<E> implements List<E> {
+class LinkedArrayListImpl<E> implements List<E> {
 	private LinkedArrayList<E> delegate;
 
 	public static <E> List<E> wrap(LinkedArrayList<E> list) {

@@ -155,4 +155,46 @@ public class LinkedArrayListTest {
 			assertEquals(linkedArrayList.get(i).intValue(), i+1);
 		}
 	}
+
+	@Test
+	public void testRemoveEntireFirstBlock() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		for(int i = 0; i < 30; i++) {
+			linkedArrayList.add(i);
+		}
+
+		assertEquals(linkedArrayList.getSize(), 30);
+
+		for(int i = 0; i < 10; i++) {
+			int removed = linkedArrayList.remove(0);
+			assertEquals(removed, i);
+		}
+
+		for(int i = 0; i < 20; i++) {
+			assertEquals(linkedArrayList.get(i).intValue(), i+10);
+		}
+	}
+
+	@Test
+	public void testRemoveEntireSecondBlock() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createWithBlockSize(10);
+		for(int i = 0; i < 30; i++) {
+			linkedArrayList.add(i);
+		}
+
+		assertEquals(linkedArrayList.getSize(), 30);
+
+		for(int i = 0; i < 10; i++) {
+			int removed = linkedArrayList.remove(10);
+			assertEquals(removed, i+10);
+		}
+
+		for(int i = 0; i < 10; i++) {
+			assertEquals(linkedArrayList.get(i).intValue(), i);
+		}
+
+		for(int i = 10; i < 20; i++) {
+			assertEquals(linkedArrayList.get(i).intValue(), i+10);
+		}
+	}
 }

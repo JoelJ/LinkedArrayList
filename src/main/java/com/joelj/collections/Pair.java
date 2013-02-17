@@ -1,6 +1,9 @@
 package com.joelj.collections;
 
 /**
+ * Simple Pair class.
+ * Has two values: first and second that are individually typed.
+ *
  * User: Joel Johnson
  * Date: 2/16/13
  * Time: 4:58 PM

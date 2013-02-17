@@ -2,6 +2,7 @@ package com.joelj.collections;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * User: Joel Johnson
@@ -9,6 +10,8 @@ import java.util.Iterator;
  * Time: 6:15 PM
  */
 public class LinkedArrayList<T> implements Iterable<T> {
+	public static final int DEFAULT_BLOCK_SIZE = 16;
+
 	private int size;
 	private int blockCount;
 	private final int blockSize;
@@ -20,12 +23,12 @@ public class LinkedArrayList<T> implements Iterable<T> {
 	}
 
 	public static <T> LinkedArrayList<T> createRaw() {
-		return new LinkedArrayList<T>(16);
+		return createRawWithBlockSize(DEFAULT_BLOCK_SIZE);
 	}
 
 	private LinkedArrayList(int blockSize) {
 		if(blockSize <= 0) {
-			blockSize = 16;
+			blockSize = DEFAULT_BLOCK_SIZE;
 		}
 		this.blockSize = blockSize;
 		init(blockSize);

@@ -69,8 +69,7 @@ public class LinkedArrayBlockIterator<T> implements ListIterator<T> {
 			globalIndex--;
 			return current.get(index);
 		} else {
-			LinkedArrayList.Block<T> pop = previousBlocks.pop();
-			current = pop;
+			current = previousBlocks.pop();
 			index = current.getNextIndex() - 1;
 			globalIndex--;
 			return current.get(current.getNextIndex());

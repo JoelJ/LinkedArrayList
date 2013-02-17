@@ -14,7 +14,7 @@ import java.util.ListIterator;
 public class LinkedArrayListImpl<E> implements List<E> {
 	private LinkedArrayList<E> delegate;
 
-	public static <E> LinkedArrayListImpl<E> wrap(LinkedArrayList<E> list) {
+	public static <E> List<E> wrap(LinkedArrayList<E> list) {
 		return new LinkedArrayListImpl<E>(list);
 	}
 

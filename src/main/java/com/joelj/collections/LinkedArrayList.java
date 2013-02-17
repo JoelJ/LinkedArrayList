@@ -18,8 +18,29 @@ public class LinkedArrayList<T> implements Iterable<T> {
 	private Block<T> head;
 	private Block<T> tail;
 
-	public static <T> LinkedArrayList<T> createRawWithBlockSize(int size) {
-		return new LinkedArrayList<T>(size);
+	/**
+	 * Creates an instance of {@link LinkedArrayList} with the given block size and wraps it in a {@link List}.
+	 * Note: The returned instance fails the check: {@code returnedObject instanceOf LinkedArrayList} since only a wrapper is returned.
+	 *
+	 * @param blockSize The size of each underlying array block.
+	 *                  The bigger this value, the better random access performs, but the worse remove operations perform.
+	 * @param <T> The type of elements contained in the list.
+	 * @return A {@link List} wrapper. See above notice about {@code instanceOf} checks.
+	 */
+	public static <T> List<T> createWithBlockSize(int blockSize) {
+		LinkedArrayList<T> rawWithBlockSize = createRawWithBlockSize(blockSize);
+		return LinkedArrayListImpl.wrap(rawWithBlockSize);
+	}
+
+	/**
+	 * Same as {@link #createWithBlockSize(int)}, but uses DEFAULT_BLOCK_SIZE for the block size.
+	 */
+	public static <T> List<T> create() {
+		return createWithBlockSize(DEFAULT_BLOCK_SIZE);
+	}
+
+	public static <T> LinkedArrayList<T> createRawWithBlockSize(int blockSize) {
+		return new LinkedArrayList<T>(blockSize);
 	}
 
 	public static <T> LinkedArrayList<T> createRaw() {

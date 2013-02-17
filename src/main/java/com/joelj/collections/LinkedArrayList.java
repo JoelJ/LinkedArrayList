@@ -88,6 +88,12 @@ public class LinkedArrayList<T> implements Iterable<T> {
 		size++;
 	}
 
+	/**
+	 * Replaces the value at the given index with the given value.
+	 * @param index The index to replace.
+	 * @param toAdd The item to add at the given index.
+	 * @return The value at give index BEFORE it is replaced.
+	 */
 	public T replace(int index, T toAdd) {
 		if(toAdd == null) {
 			throw new NullPointerException("cannot add null to LinkedArrayList");

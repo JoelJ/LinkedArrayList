@@ -17,10 +17,10 @@ public class LinkedArrayBlockIterator<T> implements ListIterator<T> {
 		return new LinkedArrayBlockIterator<T>(block);
 	}
 
-	static <T> LinkedArrayBlockIterator<T> create(LinkedArrayList.Block<T> block, int index) {
+	static <T> LinkedArrayBlockIterator<T> create(LinkedArrayList.Block<T> block, int numberToSkip) {
 		//I know this isn't the greatest implementation... but whatever.
 		LinkedArrayBlockIterator<T> iterator = new LinkedArrayBlockIterator<T>(block);
-		for(int i = 0; i < index; i++) {
+		for(int i = 0; i < numberToSkip; i++) {
 			iterator.next();
 		}
 		return iterator;

@@ -2,9 +2,12 @@ package com.joelj.collections;
 
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * User: Joel Johnson
@@ -38,6 +41,26 @@ public class LinkedArrayListImplTest {
 	}
 
 	@Test
+	public void testNext() {
+		List<String> list = LinkedArrayList.create();
+		for(int i = 0; i < 30; i++) {
+			list.add(String.valueOf(i));
+		}
+		Iterator<String> iterator = list.listIterator(10);
+		int index = 10; //The first value returned, according to the javadocs for listIterator(int), should be the "10"
+		while(iterator.hasNext()) {
+			assertEquals(iterator.next(), String.valueOf(index));
+			index++;
+		}
+
+		try {
+			iterator.next();
+			fail("Iterators next() implementation, by definition, needs to throw NoSuckElementException if called more times than there are elements.");
+		} catch(NoSuchElementException e) {
+		}
+	}
+
+	@Test
 	public void unsupportedMethods() {
 		List<Object> list = LinkedArrayList.create();
 
@@ -54,11 +77,6 @@ public class LinkedArrayListImplTest {
 		try {
 			list.add(0, new Object());
 			fail("add(int, E) appears to have an implementation now. Remove this when there are tests that test it.");
-		} catch (UnsupportedOperationException ignore) {}
-
-		try {
-			list.listIterator(0);
-			fail("listIterator(int) appears to have an implementation now. Remove this when there are tests that test it.");
 		} catch (UnsupportedOperationException ignore) {}
 
 		try {

@@ -17,6 +17,15 @@ public class LinkedArrayBlockIterator<T> implements ListIterator<T> {
 		return new LinkedArrayBlockIterator<T>(block);
 	}
 
+	static <T> LinkedArrayBlockIterator<T> create(LinkedArrayList.Block<T> block, int index) {
+		//I know this isn't the greatest implementation... but whatever.
+		LinkedArrayBlockIterator<T> iterator = new LinkedArrayBlockIterator<T>(block);
+		for(int i = 0; i < index; i++) {
+			iterator.next();
+		}
+		return iterator;
+	}
+
 	private LinkedArrayBlockIterator(LinkedArrayList.Block<T> block) {
 		assert block != null : "block can't be null";
 		current = block;

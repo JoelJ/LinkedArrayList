@@ -58,7 +58,7 @@ public class LinkedArrayList<T> implements Iterable<T> {
 		if(!tail.add(toAdd)) {
 			allocateBlock();
 			if(!tail.add(toAdd)) {
-				throw new IllegalStateException("We just allocated a new block but couldn't add to it");
+				throw new IllegalStateException("We just allocated a new block but couldn't add to it. This line wasn't expected to ever be possible to be it.");
 			}
 		}
 		size++;

@@ -192,7 +192,7 @@ class LinkedArrayListImpl<E> implements List<E> {
 
 	@Override
 	public ListIterator<E> listIterator() {
-		throw new UnsupportedOperationException();
+		return delegate.iterator();
 	}
 
 	@Override

@@ -173,8 +173,8 @@ public class LinkedArrayList<T> implements Iterable<T> {
 	}
 
 	@Override
-	public Iterator<T> iterator() {
-		return new LinkedArrayBlockIterator<T>(this.getHead());
+	public LinkedArrayBlockIterator<T> iterator() {
+		return LinkedArrayBlockIterator.create(this.getHead());
 	}
 
 	public void clear() {

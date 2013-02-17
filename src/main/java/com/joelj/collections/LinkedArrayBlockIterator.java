@@ -7,13 +7,17 @@ import java.util.*;
  * Date: 2/16/13
  * Time: 4:25 PM
  */
-class LinkedArrayBlockIterator<T> implements ListIterator<T> {
+public class LinkedArrayBlockIterator<T> implements ListIterator<T> {
 	private LinkedArrayList.Block<T> current;
 	private int index;
 	private int globalIndex;
 	private Deque<LinkedArrayList.Block<T>> previousBlocks;
 
-	public LinkedArrayBlockIterator(LinkedArrayList.Block<T> block) {
+	static <T> LinkedArrayBlockIterator<T> create(LinkedArrayList.Block<T> block) {
+		return new LinkedArrayBlockIterator<T>(block);
+	}
+
+	private LinkedArrayBlockIterator(LinkedArrayList.Block<T> block) {
 		assert block != null : "block can't be null";
 		current = block;
 		index = 0;

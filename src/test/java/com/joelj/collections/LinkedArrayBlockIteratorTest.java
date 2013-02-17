@@ -63,12 +63,41 @@ public class LinkedArrayBlockIteratorTest {
 	}
 
 	@Test
+	public void testPrevious() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRaw();
+		for(int i = 0; i < 10; i++) {
+			linkedArrayList.add(i*10);
+		}
+		LinkedArrayBlockIterator<Integer> iterator = linkedArrayList.iterator();
+		for(int i = 0; i < 5; i++) {
+			iterator.next();
+		}
+
+		for(int i = 4; i >= 0; i--) {
+			int actual = iterator.previous();
+			System.out.println(actual);
+			assertEquals(actual, i * 10);
+		}
+	}
+
+
+	@Test
 	public void testRemove() {
 		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
 		try {
 			linkedArrayList.iterator().remove();
 		} catch (UnsupportedOperationException e) {
 			assertEquals(e.getMessage(), "remove isn't implemented yet");
+		}
+	}
+
+	@Test
+	public void testAdd() {
+		LinkedArrayList<Integer> linkedArrayList = LinkedArrayList.createRawWithBlockSize(5);
+		try {
+			linkedArrayList.iterator().add(10);
+		} catch (UnsupportedOperationException e) {
+			assertEquals(e.getMessage(), "add isn't implemented yet");
 		}
 	}
 }

@@ -1,7 +1,5 @@
 package com.joelj.collections;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Iterator;
 
 /**
